@@ -1,49 +1,100 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>EcoVillage</title>
+  <meta charset="UTF-8">
+  <title>EcoVillage</title>
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      background-color: #e0f7e9;
+      padding: 20px;
+      color: #2e7d32;
+    }
+    h1 {
+      text-align: center;
+      color: #1b5e20;
+    }
+    .nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .nav button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .nav button:hover {
+      background-color: #388e3c;
+    }
+    .box {
+      display: none;
+      background-color: white;
+      border: 2px solid #81c784;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .box.active {
+      display: block;
+    }
+  </style>
+  <script>
+    function showBox(id) {
+      let boxes = document.querySelectorAll('.box');
+      boxes.forEach(box => box.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </head>
-<body style="font-family: Arial; background-color: #e0f7e9; padding: 20px;">
+<body>
 
-    <h1>EcoVillage - Наша школьная эко-доска</h1>
+  <h1>🌿 EcoVillage</h1>
+  <p style="text-align:center;">Чистая планета - дело каждого!</p>
 
-    <!-- Фото школы -->
-    <h2>Фото школы</h2>
-    <p>Здесь будет фотография школы:</p>
-    <img src="school.jpg" alt="Фото школы" width="300">
+  <div class="nav">
+    <button onclick="showBox('home')">🏠 Главная</button>
+    <button onclick="showBox('volunteer')">🤝 Волонтерский клуб</button>
+    <button onclick="showBox('hero')">🏆 Герой месяца</button>
+    <button onclick="showBox('ideas')">💡 Эко-идеи</button>
+    <button onclick="showBox('dirty')">🗑 Где грязно?</button>
+    <button onclick="showBox('contact')">📞 Контакты</button>
+  </div>
 
-    <!-- Волонтерский клуб -->
-    <h2>Заявка в волонтерский клуб</h2>
-    <form>
-        <label>Имя:</label><br>
-        <input type="text"><br><br>
-        <label>Почему вы хотите участвовать?</label><br>
-        <textarea rows="4" cols="40"></textarea><br><br>
-        <button type="submit">Отправить</button>
-    </form>
+  <div id="home" class="box active">
+    <h2>🏠 Добро пожаловать!</h2>
+    <p>Этот сайт создан для помощи в экологических проектах и делах. Присоединяйтесь!</p>
+  </div>
 
-    <!-- Герой месяца -->
-    <h2>Герой месяца</h2>
-    <p><b>Айгерим из 8Б</b> убрала мусор возле школы. Молодец!</p>
+  <div id="volunteer" class="box">
+    <h2>🤝 Заявка в волонтерский клуб</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrqP3i-ai6sBKsAvWkKUXNJM49xh4I4pe7-6wB1j_RWfGSGQ/viewform?embedded=true" width="640" height="677" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+  </div>
 
-    <!-- Эко-идеи -->
-    <h2>Предложи эко-идею</h2>
-    <form>
-        <textarea rows="3" cols="40" placeholder="Например: посадить цветы у входа..."></textarea><br><br>
-        <button type="submit">Предложить</button>
-    </form>
+  <div id="hero" class="box">
+    <h2>🏆 Герой месяца</h2>
+    <p><strong>Дария из 9А убрала село. Молодец!</strong></p>
+  </div>
 
-    <!-- Сообщение о проблеме -->
-    <h2>Где грязно? Сообщи!</h2>
-    <form>
-        <label>Место:</label><br>
-        <input type="text"><br><br>
-        <label>Фото проблемы:</label><br>
-        <input type="file"><br><br>
-        <label>Описание:</label><br>
-        <textarea rows="3" cols="40"></textarea><br><br>
-        <button type="submit">Сообщить</button>
-    </form>
+  <div id="ideas" class="box">
+    <h2>💡 Предложи эко-идею</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbCFQ_NW0zMpf_ZntYaaElLvE_s3WaXQFPo2w5V_8Mxk0rNQ/viewform?embedded=true" width="640" height="407" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+  </div>
+
+  <div id="dirty" class="box">
+    <h2>🗑 Где грязно? Сообщи!</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeoI-rkIdU9CRWd3JfUVIskl7-tNBIrgkqeNps-AyM1qRu6Rw/viewform?embedded=true" width="640" height="575" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+  </div>
+
+  <div id="contact" class="box">
+    <h2>📞 Контакты организатора</h2>
+    <p>email:maksutovadaria7@gmail.com</p>
+    <p> phone number: +7(708)1969382</p>
+  </div>
 
 </body>
 </html>
