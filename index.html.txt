@@ -1,0 +1,49 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EcoVillage</title>
+</head>
+<body style="font-family: Arial; background-color: #e0f7e9; padding: 20px;">
+
+    <h1>EcoVillage - Наша школьная эко-доска</h1>
+
+    <!-- Фото школы -->
+    <h2>Фото школы</h2>
+    <p>Здесь будет фотография школы:</p>
+    <img src="school.jpg" alt="Фото школы" width="300">
+
+    <!-- Волонтерский клуб -->
+    <h2>Заявка в волонтерский клуб</h2>
+    <form>
+        <label>Имя:</label><br>
+        <input type="text"><br><br>
+        <label>Почему вы хотите участвовать?</label><br>
+        <textarea rows="4" cols="40"></textarea><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <!-- Герой месяца -->
+    <h2>Герой месяца</h2>
+    <p><b>Айгерим из 8Б</b> убрала мусор возле школы. Молодец!</p>
+
+    <!-- Эко-идеи -->
+    <h2>Предложи эко-идею</h2>
+    <form>
+        <textarea rows="3" cols="40" placeholder="Например: посадить цветы у входа..."></textarea><br><br>
+        <button type="submit">Предложить</button>
+    </form>
+
+    <!-- Сообщение о проблеме -->
+    <h2>Где грязно? Сообщи!</h2>
+    <form>
+        <label>Место:</label><br>
+        <input type="text"><br><br>
+        <label>Фото проблемы:</label><br>
+        <input type="file"><br><br>
+        <label>Описание:</label><br>
+        <textarea rows="3" cols="40"></textarea><br><br>
+        <button type="submit">Сообщить</button>
+    </form>
+
+</body>
+</html>
