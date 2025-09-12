@@ -2,22 +2,49 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoVillage</title>
+
+  <!-- Подключаем шрифты Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
+    /* Общие стили */
     body {
-      font-family: Verdana, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background-color: #e0f7e9;
       padding: 20px;
       color: #2e7d32;
+      margin: 0;
     }
+    
     h1 {
       text-align: center;
       color: #1b5e20;
+      font-size: 2.5em;
+      margin-bottom: 20px;
     }
-    .nav {
+
+    h2 {
+      background-image: url('background-image.jpg');
+      background-size: cover;
+      color: white;
+      padding: 20px;
       text-align: center;
       margin-bottom: 20px;
     }
+
+    .nav {
+      text-align: center;
+      margin-bottom: 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #4caf50;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
     .nav button {
       background-color: #4caf50;
       color: white;
@@ -26,10 +53,44 @@
       margin: 5px;
       border-radius: 5px;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
+
     .nav button:hover {
       background-color: #388e3c;
+      transform: scale(1.1);
     }
+
+    .nav button:focus {
+      outline: none;
+    }
+
+    /* Стили для бегущей строки */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      background-color: #388e3c;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      white-space: nowrap;
+      margin-top: 60px;
+    }
+
+    .marquee {
+      animation: marquee 10s linear infinite;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Стили для блоков */
     .box {
       display: none;
       background-color: white;
@@ -39,11 +100,25 @@
       margin-bottom: 20px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     }
+
     .box.active {
       display: block;
     }
+
+    @media (max-width: 768px) {
+      .nav button {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .marquee {
+        font-size: 14px;
+      }
+    }
   </style>
+
   <script>
+    // Функция для показа активного блока
     function showBox(id) {
       let boxes = document.querySelectorAll('.box');
       boxes.forEach(box => box.classList.remove('active'));
@@ -56,6 +131,12 @@
   <h1>🌿 EcoVillage</h1>
   <p style="text-align:center;">Чистая планета - дело каждого!</p>
 
+  <!-- Бегущая строка -->
+  <div class="marquee">
+    🌍 Добро пожаловать в EcoVillage! Присоединяйтесь к экологическим инициативам! 🌱
+  </div>
+
+  <!-- Навигация -->
   <div class="nav">
     <button onclick="showBox('home')">🏠 Главная</button>
     <button onclick="showBox('volunteer')">🤝 Волонтерский клуб</button>
@@ -65,6 +146,7 @@
     <button onclick="showBox('contact')">📞 Контакты</button>
   </div>
 
+  <!-- Секции -->
   <div id="home" class="box active">
     <h2>🏠 Добро пожаловать!</h2>
     <p>Этот сайт создан для помощи в экологических проектах и делах. Присоединяйтесь!</p>
@@ -75,14 +157,13 @@
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrqP3i-ai6sBKsAvWkKUXNJM49xh4I4pe7-6wB1j_RWfGSGQ/viewform?embedded=true" width="640" height="677" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
   </div>
 
-   <div id="hero" class="box">
-  <h2>🏆 Герой месяца</h2>
-  <p><strong>Нурай из 9А по дороге в школу убрала мусор. Молодец!</strong></p>
-  <img src="photo.jpg" alt="Герой месяца: Нурай" style="max-width:500px; border-radius:10px;">
-  <!-- Если файл на самом деле photo2.png — используйте .png, иначе .jpg -->
-  <img src="photo2.jpg" alt="10 Б вышли на субботник!" style="max-width:500px; border-radius:10px;">
-  <img src="photo3.jpg" alt="Третья картинка" style="max-width:500px; border-radius:10px;">
-</div>
+  <div id="hero" class="box">
+    <h2>🏆 Герой месяца</h2>
+    <p><strong>Нурай из 9А по дороге в школу убрала мусор. Молодец!</strong></p>
+    <img src="photo.jpg" alt="Герой месяца: Нурай" style="max-width:500px; border-radius:10px;">
+    <img src="photo2.jpg" alt="10 Б вышли на субботник!" style="max-width:500px; border-radius:10px;">
+    <img src="photo3.jpg" alt="Третья картинка" style="max-width:500px; border-radius:10px;">
+  </div>
 
   <div id="ideas" class="box">
     <h2>💡 Предложи эко-идею</h2>
@@ -96,11 +177,9 @@
 
   <div id="contact" class="box">
     <h2>📞 Контакты организатора</h2>
-    <p>email:maksutovadaria7@gmail.com</p>
-    <p> phone number: +7(708)1969382</p>
+    <p>Email: maksutovadaria7@gmail.com</p>
+    <p>Телефон: +7(708)1969382</p>
   </div>
 
 </body>
 </html>
-
-
