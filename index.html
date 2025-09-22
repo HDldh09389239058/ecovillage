@@ -21,162 +21,59 @@
     h1 {
       text-align: center;
       color: #1b5e20;
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      font-size: 2.2em;
+      margin: 80px 0 10px; /* отступ вниз чтобы не перекрывало меню */
     }
 
     h2 {
       background-image: url('background-image.jpg');
       background-size: cover;
       color: white;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
       margin-bottom: 20px;
+      border-radius: 8px;
     }
 
+    /* Навигация */
     .nav {
       text-align: center;
-      margin-bottom: 20px;
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       background-color: #4caf50;
       z-index: 1000;
+      padding: 10px 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
     }
 
     .nav button {
       background-color: #4caf50;
       color: white;
       border: none;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 5px;
+      padding: 8px 12px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-size: 14px;
     }
 
     .nav button:hover {
       background-color: #388e3c;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     .nav button:focus {
       outline: none;
     }
 
-    /* Стили для блоков */
+    /* Блоки */
     .box {
       display: none;
       background-color: white;
       border: 2px solid #81c784;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .box.active {
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .nav button {
-        width: 100%;
-        margin: 5px 0;
-      }
-
-      .marquee {
-        font-size: 14px;
-      }
-    }
-  </style>
-
-  <script>
-    // Функция для показа активного блока
-    function showBox(id) {
-      let boxes = document.querySelectorAll('.box');
-      boxes.forEach(box => box.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
-</head>
-<body>
-
-  <h1>🌿 EcoVillage</h1>
-  <p style="text-align:center;">Чистая планета - дело каждого!</p>
-
-  <!-- Бегущая строка -->
-<div class="marquee">
-  🌍 Добро пожаловать в EcoVillage! Присоединяйтесь к экологическим инициативам! 🌱
-</div>
-
-<style>
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-}
-
-.marquee {
-  display: inline-block;
-  padding-left: 100%; 
-  animation: marquee 10s linear infinite;
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-</style>
-
-  <!-- Навигация -->
-  <div class="nav">
-    <button onclick="showBox('home')">🏠 Главная</button>
-    <button onclick="showBox('volunteer')">🤝 Волонтерский клуб</button>
-    <button onclick="showBox('hero')">🏆 Герой месяца</button>
-    <button onclick="showBox('ideas')">💡 Эко-идеи</button>
-    <button onclick="showBox('dirty')">🗑 Где грязно?</button>
-    <button onclick="showBox('contact')">📞 Контакты</button>
-  </div>
-
-  <!-- Секции -->
-  <div id="home" class="box active">
-    <h2>🏠 Добро пожаловать!</h2>
-    <p>Этот сайт создан для помощи в экологических проектах и делах. Присоединяйтесь!</p>
-  </div>
-
-  <div id="volunteer" class="box">
-    <h2>🤝 Заявка в волонтерский клуб</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrqP3i-ai6sBKsAvWkKUXNJM49xh4I4pe7-6wB1j_RWfGSGQ/viewform?embedded=true" width="640" height="677" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
-  </div>
-
-  <div id="hero" class="box">
-    <h2>🏆 Герой месяца</h2>
-    <p><strong>Нурай из 9А по дороге в школу убрала мусор. Молодец!</strong></p>
-    <img src="photo.jpg" alt="Герой месяца: Нурай" style="max-width:500px; border-radius:10px;">
-    <img src="photo2.jpg" alt="10 Б вышли на субботник!" style="max-width:500px; border-radius:10px;">
-    <img src="photo3.jpg" alt="Третья картинка" style="max-width:500px; border-radius:10px;">
-  </div>
-
-  <div id="ideas" class="box">
-    <h2>💡 Предложи эко-идею</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbCFQ_NW0zMpf_ZntYaaElLvE_s3WaXQFPo2w5V_8Mxk0rNQ/viewform?embedded=true" width="640" height="407" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
-  </div>
-
-  <div id="dirty" class="box">
-    <h2>🗑 Где грязно? Сообщи!</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeoI-rkIdU9CRWd3JfUVIskl7-tNBIrgkqeNps-AyM1qRu6Rw/viewform?embedded=true" width="640" height="575" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
-  </div>
-
-  <div id="contact" class="box">
-    <h2>📞 Контакты организатора</h2>
-    <p>Email: maksutovadaria7@gmail.com</p>
-    <p>Телефон: +7(708)1969382</p>
-  </div>
-
-</body>
-</html>
-
-
-
