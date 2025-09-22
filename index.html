@@ -82,24 +82,35 @@
       display: block;
     }
 
-    /* Бегущая строка */
-    .marquee {
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      display: block;
-      width: 100%;
-      padding-left: 100%;
-      animation: marquee 15s linear infinite;
-      font-weight: bold;
-      color: #1b5e20;
-      margin: 20px 0;
-    }
+   /* CSS: добавь/замени в <style> */
+.marquee {
+  overflow: hidden;         /* прячет текст вне контейнера */
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  padding: 12px 0;
+}
 
-    @keyframes marquee {
-      0%   { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
-    }
+.marquee__inner {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translateX(100%);            /* старт — справа за экраном */
+  animation: marquee 15s linear infinite; /* 15s — средняя скорость */
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+/* Поставить на паузу при наведении (опционально) */
+.marquee:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(100%); }   /* справа за экраном */
+  100% { transform: translateX(-100%); }  /* уходит влево за экран */
+}
+
 
     /* Адаптивность */
     iframe, img {
@@ -198,4 +209,5 @@
 
 </body>
 </html>
+
 
