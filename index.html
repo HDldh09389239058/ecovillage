@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoVillage</title>
 
-  <!-- Подключаем шрифты Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Общие стили */
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #e0f7e9;
@@ -17,12 +15,12 @@
       margin: 0;
       padding: 0;
     }
-    
+
     h1 {
       text-align: center;
       color: #1b5e20;
       font-size: 2.2em;
-      margin: 90px 20px 10px; /* Отступ сверху из-за фиксированного меню */
+      margin: 90px 20px 10px;
     }
 
     h2 {
@@ -34,32 +32,42 @@
       border-radius: 8px;
     }
 
-    /* Навигация */
+    /* 🔹 Навигация */
     .nav {
-      text-align: center;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       background-color: #4caf50;
       z-index: 1000;
-      padding: 10px 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 8px;
+      padding: 10px 5px;
+      overflow-x: auto; /* горизонтальная прокрутка */
+      white-space: nowrap;
+      scrollbar-width: thin; /* Firefox */
+    }
+
+    .nav::-webkit-scrollbar {
+      height: 6px;
+    }
+    .nav::-webkit-scrollbar-thumb {
+      background: #81c784;
+      border-radius: 3px;
     }
 
     .nav button {
       background-color: #4caf50;
       color: white;
       border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 10px 14px;
+      border-radius: 8px;
       cursor: pointer;
       transition: transform 0.3s ease, background 0.3s ease;
-      font-size: 14px;
+      font-size: 15px;
+      flex-shrink: 0;
     }
 
     .nav button:hover {
@@ -67,7 +75,7 @@
       transform: scale(1.05);
     }
 
-    /* Блоки */
+    /* 🔹 Блоки */
     .box {
       display: none;
       background-color: white;
@@ -82,40 +90,46 @@
       display: block;
     }
 
-   /* CSS: добавь/замени в <style> */
-.marquee {
-  overflow: hidden;         /* прячет текст вне контейнера */
-  width: 100%;
-  box-sizing: border-box;
-  background: transparent;
-  padding: 12px 0;
-}
+    /* 🔹 Бегущая строка */
+    .marquee {
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
+      background: transparent;
+      padding: 12px 0;
+    }
 
-.marquee__inner {
-  display: inline-block;
-  white-space: nowrap;
-  will-change: transform;
-  transform: translateX(100%);            /* старт — справа за экраном */
-  animation: marquee 15s linear infinite; /* 15s — средняя скорость */
-  font-weight: 700;
-  color: #1b5e20;
-}
+    .marquee__inner {
+      display: inline-block;
+      white-space: nowrap;
+      will-change: transform;
+      transform: translateX(100%);
+      animation: marquee 15s linear infinite;
+      font-weight: 700;
+      color: #1b5e20;
+    }
 
-/* Поставить на паузу при наведении (опционально) */
-.marquee:hover .marquee__inner {
-  animation-play-state: paused;
-}
+    .marquee:hover .marquee__inner {
+      animation-play-state: paused;
+    }
 
-@keyframes marquee {
-  0%   { transform: translateX(100%); }   /* справа за экраном */
-  100% { transform: translateX(-100%); }  /* уходит влево за экран */
-}
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
 
-
-    /* Адаптивность */
     iframe, img {
       max-width: 100%;
       height: auto;
+      border-radius: 8px;
+    }
+
+    /* 🔹 Адаптивность */
+    @media (max-width: 1024px) {
+      .nav {
+        gap: 6px;
+        padding: 8px 5px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -123,26 +137,29 @@
         font-size: 1.8em;
         margin-top: 100px;
       }
+      .nav button {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
       .nav {
-        flex-direction: column;
-        gap: 8px;
+        justify-content: flex-start;
+        overflow-x: auto; /* включаем горизонтальную прокрутку */
+        -webkit-overflow-scrolling: touch;
       }
       .nav button {
-        width: 100%;
-        font-size: 16px;
-        padding: 12px;
-      }
-      .marquee {
-        font-size: 14px;
+        flex: 0 0 auto;
+        font-size: 13px;
+        padding: 10px 10px;
       }
     }
   </style>
 
   <script>
-    // Функция для показа активного блока
     function showBox(id) {
-      let boxes = document.querySelectorAll('.box');
-      boxes.forEach(box => box.classList.remove('active'));
+      document.querySelectorAll('.box').forEach(box => box.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -150,12 +167,12 @@
 </head>
 <body>
 
-  <!-- Навигация -->
+  <!-- 🔹 Навигация -->
   <div class="nav">
     <button onclick="showBox('home')">🏠 Главная</button>
-    <button onclick="showBox('volunteer')">🤝 Волонтерский клуб</button>
-    <button onclick="showBox('hero')">🏆 Герой месяца</button>
-    <button onclick="showBox('ideas')">💡 Эко-идеи</button>
+    <button onclick="showBox('volunteer')">🤝 Волонтеры</button>
+    <button onclick="showBox('hero')">🏆 Герой</button>
+    <button onclick="showBox('ideas')">💡 Идеи</button>
     <button onclick="showBox('dirty')">🗑 Где грязно?</button>
     <button onclick="showBox('contact')">📞 Контакты</button>
   </div>
@@ -163,14 +180,13 @@
   <h1>🌿 EcoVillage</h1>
   <p style="text-align:center;">Чистая планета — дело каждого!</p>
 
-  <!-- HTML: замени старую .marquee на это -->
-<div class="marquee">
-  <div class="marquee__inner">
-    🌍 Добро пожаловать в EcoVillage! Присоединяйтесь к экологическим инициативам! 🌱
+  <div class="marquee">
+    <div class="marquee__inner">
+      🌍 Добро пожаловать в EcoVillage! Присоединяйтесь к экологическим инициативам! 🌱
+    </div>
   </div>
-</div>
 
-  <!-- Секции -->
+  <!-- 🔹 Секции -->
   <div id="home" class="box active">
     <h2>🏠 Добро пожаловать!</h2>
     <p>Этот сайт создан для помощи в экологических проектах и делах. Присоединяйтесь!</p>
@@ -178,7 +194,7 @@
 
   <div id="volunteer" class="box">
     <h2>🤝 Заявка в волонтерский клуб</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrqP3i-ai6sBKsAvWkKUXNJM49xh4I4pe7-6wB1j_RWfGSGQ/viewform?embedded=true" width="640" height="677" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrqP3i-ai6sBKsAvWkKUXNJM49xh4I4pe7-6wB1j_RWfGSGQ/viewform?embedded=true" width="640" height="677" frameborder="0">Загрузка…</iframe>
   </div>
 
   <div id="hero" class="box">
@@ -187,27 +203,25 @@
     <img src="photo.jpg" alt="Герой месяца: Нурай">
     <p><strong>10 Б вышли на субботник!</strong></p>
     <img src="photo2.jpg" alt="10 Б вышли на субботник!">
-    <img src="photo3.jpg" alt="Третья картинка"> 
-    <p>Мы посадили дерево:)</p>
+    <img src="photo3.jpg" alt="Третья картинка">
+    <p>Мы посадили дерево 🙂</p>
   </div>
 
   <div id="ideas" class="box">
     <h2>💡 Предложи эко-идею</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbCFQ_NW0zMpf_ZntYaaElLvE_s3WaXQFPo2w5V_8Mxk0rNQ/viewform?embedded=true" width="640" height="407" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbCFQ_NW0zMpf_ZntYaaElLvE_s3WaXQFPo2w5V_8Mxk0rNQ/viewform?embedded=true" width="640" height="407" frameborder="0">Загрузка…</iframe>
   </div>
 
   <div id="dirty" class="box">
     <h2>🗑 Где грязно? Сообщи!</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeoI-rkIdU9CRWd3JfUVIskl7-tNBIrgkqeNps-AyM1qRu6Rw/viewform?embedded=true" width="640" height="575" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeoI-rkIdU9CRWd3JfUVIskl7-tNBIrgkqeNps-AyM1qRu6Rw/viewform?embedded=true" width="640" height="575" frameborder="0">Загрузка…</iframe>
   </div>
 
   <div id="contact" class="box">
     <h2>📞 Контакты организатора</h2>
     <p>Email: maksutovadaria7@gmail.com</p>
-    <p>Телефон: +7(708)1969382</p>
+    <p>Телефон: +7 (708) 196 9382</p>
   </div>
 
 </body>
 </html>
-
-
